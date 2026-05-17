@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Muneeb-ur-Rehman | DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#00ff88;--green-dim:#00cc6a;--bg:#0d1117;--surface:#161b22;
+  --border:#30363d;--text:#e6edf3;--muted:#8b949e;--blue:#58a6ff;
+  --orange:#f0883e;--purple:#bc8cff;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:'JetBrains Mono',monospace;color:var(--text);min-height:100vh}
+a{color:inherit;text-decoration:none}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem 5rem}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.75rem 0}
+.nav-inner{max-width:900px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:var(--green)}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:12px;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+
+/* HERO */
+.hero{border:1px solid var(--border);border-radius:12px;padding:2.5rem;margin:2rem 0 1.5rem;background:var(--surface);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--blue),var(--purple))}
+.prompt{color:var(--green);font-size:12px;margin-bottom:10px}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(32px,6vw,52px);font-weight:800;line-height:1;letter-spacing:-1.5px}
+.hero-title{font-size:14px;color:var(--green);margin-top:10px;font-weight:500}
+.hero-summary{font-size:12px;color:var(--muted);line-height:1.8;margin-top:12px;max-width:600px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.meta-item i{font-size:15px;color:var(--green)}
+.meta-item a{color:var(--muted);transition:color .2s}
+.meta-item a:hover{color:var(--green)}
+.hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.badge{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid;font-family:'JetBrains Mono',monospace}
+.badge-green{color:#3fb950;border-color:#238636;background:#0f2c17}
+.badge-blue{color:#58a6ff;border-color:#1f6feb;background:#0d1d38}
+.badge-orange{color:#f0883e;border-color:#9e6a03;background:#2a1e00}
+
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:1.5rem}
+.stat-box{background:var(--surface);padding:1.25rem 1rem;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--green)}
+.stat-label{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+/* SECTION */
+.section-header{display:flex;align-items:center;gap:8px;margin:2rem 0 1rem;font-size:12px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+.section-header::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-header i{color:var(--green);font-size:16px}
+
+/* REPO CARDS */
+.repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:1.5rem}
+.repo-card{border:1px solid var(--border);border-radius:8px;padding:1.25rem;background:var(--surface);transition:border-color .2s,transform .2s;display:block;position:relative;overflow:hidden}
+.repo-card:hover{border-color:var(--green);transform:translateY(-3px)}
+.repo-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent,var(--green))}
+.repo-name{color:var(--blue);font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.repo-name i{color:var(--green);font-size:14px}
+.repo-desc{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+.repo-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{font-size:10px;padding:2px 8px;border-radius:4px;background:#21262d;color:var(--muted);border:1px solid var(--border)}
+.repo-meta{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--muted)}
+.lang-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem}
+.skill-card{border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;background:var(--surface)}
+.skill-category{font-size:11px;color:var(--green);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.skill-list{display:flex;flex-wrap:wrap;gap:6px}
+.skill-pill{font-size:10px;padding:3px 9px;border-radius:4px;background:#21262d;color:#c9d1d9;border:1px solid var(--border)}
+
+/* EXPERIENCE */
+.exp-item{display:flex;gap:16px;padding:1.25rem 0;border-bottom:1px solid var(--border)}
+.exp-item:last-child{border-bottom:none}
+.exp-left{display:flex;flex-direction:column;align-items:center;gap:0}
+.exp-dot{width:12px;height:12px;border-radius:50%;background:var(--green);flex-shrink:0}
+.exp-dot.dim{background:var(--muted)}
+.exp-line{width:1px;flex:1;background:var(--border);margin-top:6px}
+.exp-company{color:var(--orange);font-size:12px;font-weight:700;margin-bottom:2px}
+.exp-role{font-size:14px;color:var(--text);font-weight:500;margin-bottom:4px}
+.exp-date{font-size:11px;color:var(--muted);margin-bottom:8px}
+.exp-bullets{list-style:none;padding:0}
+.exp-bullets li{font-size:11px;color:var(--muted);line-height:1.7;padding-left:12px;position:relative;margin-bottom:4px}
+.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--green);font-size:10px}
+
+/* TERMINAL */
+.terminal{border:1px solid var(--border);border-radius:8px;background:#010409;overflow:hidden;margin-bottom:1.5rem}
+.terminal-bar{display:flex;align-items:center;gap:6px;padding:.6rem 1rem;background:#161b22;border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.t-line{font-size:12px;line-height:2;padding:0 1.25rem}
+.t-line:first-of-type{padding-top:.75rem}
+.t-line:last-of-type{padding-bottom:.75rem}
+.cmd{color:var(--green)}
+.dim{color:var(--muted)}
+.sha{color:var(--green)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.cursor{display:inline-block;width:8px;height:13px;background:var(--green);vertical-align:middle;animation:blink 1s infinite;margin-left:2px}
+
+/* CONTACT */
+.contact-bar{border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.5rem;background:var(--surface);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.contact-link{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--blue);transition:color .2s}
+.contact-link:hover{color:var(--green)}
+.contact-link i{font-size:16px}
+
+/* EDUCATION */
+.edu-card{border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;background:var(--surface);display:flex;align-items:center;gap:16px;margin-bottom:1.5rem}
+.edu-icon{width:40px;height:40px;border-radius:8px;background:#0f2c17;border:1px solid #238636;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.edu-icon i{color:var(--green);font-size:20px}
+.edu-degree{font-size:13px;font-weight:500;color:var(--text)}
+.edu-school{font-size:12px;color:var(--orange);margin-top:2px}
+.edu-meta{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{gap:.75rem}
+  .hero{padding:1.5rem}
+  .contact-bar{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">muneeb@devops:~$</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="prompt">$ whoami</div>
+    <div class="hero-name">Muneeb-ur-Rehman</div>
+    <div class="hero-title">DevOps Engineer &nbsp;·&nbsp; Site Reliability Engineer</div>
+    <div class="hero-summary">
+      Results-driven DevOps/SRE Engineer with 3+ years of hands-on experience designing CI/CD pipelines,
+      orchestrating containerized workloads at scale, and hardening cloud infrastructure on AWS.
+      Delivered 60% Docker image-size reduction, engineered Kubernetes clusters supporting 20,000 concurrent users,
+      and embedded DevSecOps controls across every pipeline stage.
+    </div>
+    <div class="hero-meta">
+      <span class="meta-item"><i class="ti ti-map-pin"></i>Islamabad, Pakistan</span>
+      <span class="meta-item"><i class="ti ti-mail"></i><a href="mailto:umuneeb261@gmail.com">umuneeb261@gmail.com</a></span>
+      <span class="meta-item"><i class="ti ti-phone"></i><a href="tel:+923000437094">+92-300-0437094</a></span>
+      <span class="meta-item"><i class="ti ti-brand-linkedin"></i><a href="https://linkedin.com/in/fgfusion" target="_blank">linkedin.com/in/fgfusion</a></span>
+      <span class="meta-item"><i class="ti ti-brand-github"></i><a href="https://github.com/fgfusion" target="_blank">github.com/fgfusion</a></span>
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-green">&#9679; Open to work</span>
+      <span class="badge badge-blue">3+ yrs experience</span>
+      <span class="badge badge-orange">AWS &middot; K8s &middot; Terraform &middot; Jenkins</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-grid">
+    <div class="stat-box"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-box"><div class="stat-num">60%</div><div class="stat-label">Docker Image Size ↓</div></div>
+    <div class="stat-box"><div class="stat-num">40%</div><div class="stat-label">Release Cycle ↓</div></div>
+    <div class="stat-box"><div class="stat-box"><div class="stat-num">20K</div><div class="stat-label">Concurrent Users Handled</div></div></div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div id="projects" class="section-header"><i class="ti ti-folder-filled"></i> featured projects</div>
+  <div class="repo-grid">
+
+    <div class="repo-card" style="--accent:#58a6ff">
+      <div class="repo-name"><i class="ti ti-book"></i>eks-ha-deployment</div>
+      <div class="repo-desc">Two-tier Flask + MySQL app on AWS EKS with HPA, rolling updates, and zero single-point-of-failure — handling 20,000 concurrent users.</div>
+      <div class="repo-tags"><span class="tag">Kubernetes</span><span class="tag">AWS EKS</span><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">HPA</span></div>
+      <div class="repo-meta"><span><span class="lang-dot" style="background:#3572A5"></span>Python</span><span>★ 12</span></div>
+    </div>
+
+    <div class="repo-card" style="--accent:#f0883e">
+      <div class="repo-name"><i class="ti ti-book"></i>jenkins-devsecops-pipeline</div>
+      <div class="repo-desc">End-to-end Jenkins pipeline: Checkout → Build → Tests → SonarQube → Trivy/OWASP → Docker Build → Deploy. Cut release time ~40%.</div>
+      <div class="repo-tags"><span class="tag">Jenkins</span><span class="tag">SonarQube</span><span class="tag">Trivy</span><span class="tag">OWASP</span><span class="tag">Docker</span></div>
+      <div class="repo-meta"><span><span class="lang-dot" style="background:#89e051"></span>Groovy</span><span>★ 9</span></div>
+    </div>
+
+    <div class="repo-card" style="--accent:#bc8cff">
+      <div class="repo-name"><i class="ti ti-book"></i>aws-ecs-cicd-pipeline</div>
+      <div class="repo-desc">Automated Jenkins → ECR → ECS pipeline for React/Django app. Docker Compose builds and pushes image to ECR; ECS handles containerized deployment.</div>
+      <div class="repo-tags"><span class="tag">AWS ECS</span><span class="tag">ECR</span><span class="tag">Jenkins</span><span class="tag">React</span><span class="tag">Django</span></div>
+      <div class="repo-meta"><span><span class="lang-dot" style="background:#3572A5"></span>Python</span><span>★ 7</span></div>
+    </div>
+
+    <div class="repo-card" style="--accent:#00ff88">
+      <div class="repo-name"><i class="ti ti-book"></i>terraform-aws-infra-modules</div>
+      <div class="repo-desc">Reusable Terraform modules for VPC, EKS, EC2 Auto Scaling, IAM, S3, and CloudWatch with least-privilege security posture.</div>
+      <div class="repo-tags"><span class="tag">Terraform</span><span class="tag">VPC</span><span class="tag">IAM</span><span class="tag">CloudWatch</span></div>
+      <div class="repo-meta"><span><span class="lang-dot" style="background:#7b42bc"></span>HCL</span><span>★ 15</span></div>
+    </div>
+
+    <div class="repo-card" style="--accent:#f0883e">
+      <div class="repo-name"><i class="ti ti-book"></i>ansible-server-hardening</div>
+      <div class="repo-desc">Ansible playbooks for provisioning, security hardening, and patch management across 50+ servers. Reduced manual config effort by 70%.</div>
+      <div class="repo-tags"><span class="tag">Ansible</span><span class="tag">RHEL</span><span class="tag">SELinux</span><span class="tag">iptables</span></div>
+      <div class="repo-meta"><span><span class="lang-dot" style="background:#f0eba5"></span>YAML</span><span>★ 6</span></div>
+    </div>
+
+    <div class="repo-card" style="--accent:#58a6ff">
+      <div class="repo-name"><i class="ti ti-book"></i>prometheus-grafana-stack</div>
+      <div class="repo-desc">Full-stack monitoring with Prometheus, Grafana dashboards, ELK Stack for log aggregation, and Zabbix for enterprise infrastructure monitoring.</div>
+      <div class="repo-tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">ELK</span><span class="tag">Zabbix</span></div>
+      <div class="repo-meta"><span><span class="lang-dot" style="background:#89e051"></span>Shell</span><span>★ 8</span></div>
+    </div>
+
+  </div>
+
+  <!-- SKILLS -->
+  <div id="skills" class="section-header"><i class="ti ti-cpu"></i> skills</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-category">&#9729; Cloud / AWS</div>
+      <div class="skill-list">
+        <span class="skill-pill">EC2</span><span class="skill-pill">EKS</span><span class="skill-pill">ECS</span><span class="skill-pill">S3</span><span class="skill-pill">IAM</span><span class="skill-pill">VPC</span><span class="skill-pill">Lambda</span><span class="skill-pill">CloudWatch</span><span class="skill-pill">Route 53</span><span class="skill-pill">ECR</span><span class="skill-pill">CloudFormation</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">&#9881; CI/CD &amp; IaC</div>
+      <div class="skill-list">
+        <span class="skill-pill">Jenkins</span><span class="skill-pill">ArgoCD</span><span class="skill-pill">Terraform</span><span class="skill-pill">Ansible</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">CodePipeline</span><span class="skill-pill">Maven</span><span class="skill-pill">GitLab CI</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">&#128051; Containers</div>
+      <div class="skill-list">
+        <span class="skill-pill">Docker</span><span class="skill-pill">Docker Swarm</span><span class="skill-pill">Kubernetes</span><span class="skill-pill">Helm</span><span class="skill-pill">Multi-stage builds</span><span class="skill-pill">Docker Hub</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">&#128274; Security</div>
+      <div class="skill-list">
+        <span class="skill-pill">SonarQube</span><span class="skill-pill">Trivy</span><span class="skill-pill">OWASP ZAP</span><span class="skill-pill">SELinux</span><span class="skill-pill">SSL/TLS</span><span class="skill-pill">IAM Policies</span><span class="skill-pill">Network ACLs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">&#128202; Monitoring</div>
+      <div class="skill-list">
+        <span class="skill-pill">Prometheus</span><span class="skill-pill">Grafana</span><span class="skill-pill">ELK Stack</span><span class="skill-pill">Zabbix</span><span class="skill-pill">CloudTrail</span><span class="skill-pill">CloudWatch</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">&#128039; Linux</div>
+      <div class="skill-list">
+        <span class="skill-pill">RHEL 7/8</span><span class="skill-pill">Ubuntu</span><span class="skill-pill">CentOS</span><span class="skill-pill">Bash/Shell</span><span class="skill-pill">LVM</span><span class="skill-pill">iptables</span><span class="skill-pill">cron</span><span class="skill-pill">systemd</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div id="experience" class="section-header"><i class="ti ti-briefcase"></i> experience</div>
+
+  <div class="exp-item">
+    <div class="exp-left"><div class="exp-dot"></div><div class="exp-line"></div></div>
+    <div style="flex:1">
+      <div class="exp-role">DevOps Engineer</div>
+      <div class="exp-company">Zones IT Solutions</div>
+      <div class="exp-date">Jan 2023 – Present &nbsp;·&nbsp; Islamabad, Pakistan</div>
+      <ul class="exp-bullets">
+        <li>Architected multi-stage Jenkins pipelines cutting release cycle time by ~40% and eliminating manual handoffs.</li>
+        <li>Reduced Docker image sizes by 60% through multi-stage build optimization.</li>
+        <li>Deployed Flask/MySQL app on AWS EKS serving 20,000 concurrent users with zero downtime.</li>
+        <li>Automated server provisioning across 50+ servers using Ansible, reducing manual effort by 70%.</li>
+        <li>Enforced AWS security best practices — IAM least-privilege, VPC segmentation, network ACLs, end-to-end encryption.</li>
+        <li>Built Prometheus + Grafana dashboards and ELK Stack for centralized observability.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-left"><div class="exp-dot dim"></div></div>
+    <div style="flex:1">
+      <div class="exp-role">Linux System Administrator</div>
+      <div class="exp-company">OneByte</div>
+      <div class="exp-date">2022 – 2023 &nbsp;·&nbsp; Lahore, Pakistan</div>
+      <ul class="exp-bullets">
+        <li>Administered 20+ RHEL 7/8 enterprise servers with 99.5% uptime via proactive patch management.</li>
+        <li>Configured Apache, DNS, NFS, FTP, SAMBA with zero unplanned outages across 12 months.</li>
+        <li>Implemented Keepalived high-availability failover, eliminating single points of failure.</li>
+        <li>Automated routine sysadmin tasks via cron and shell scripts, saving 8+ hours/week.</li>
+        <li>Hardened security with advanced permissions (SUID, SGID, Sticky Bit) and iptables firewall rules.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section-header"><i class="ti ti-school"></i> education</div>
+  <div class="edu-card">
+    <div class="edu-icon"><i class="ti ti-certificate"></i></div>
+    <div>
+      <div class="edu-degree">Bachelor of Science in Computer Science</div>
+      <div class="edu-school">University of Okara</div>
+      <div class="edu-meta">2018 – 2022 &nbsp;·&nbsp; Okara, Pakistan &nbsp;·&nbsp; GPA: 3.35 / 4.0</div>
+    </div>
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="section-header"><i class="ti ti-terminal-2"></i> terminal</div>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+    </div>
+    <div class="t-line"><span class="cmd">$ </span><span style="color:#58a6ff">git log</span> <span class="dim">--oneline --graph</span></div>
+    <div class="t-line dim">* <span class="sha">a3f1b2c</span> feat: zero-downtime EKS rolling update strategy</div>
+    <div class="t-line dim">* <span class="sha">9d82e11</span> fix: reduce Docker image size by 60% via multi-stage build</div>
+    <div class="t-line dim">* <span class="sha">c4a7f50</span> feat: Jenkins pipeline with SonarQube + Trivy + OWASP</div>
+    <div class="t-line dim">* <span class="sha">b1e9d33</span> infra: Terraform modules for VPC + EKS + IAM</div>
+    <div class="t-line dim">* <span class="sha">77f2a88</span> ops: Ansible playbooks — 50+ servers hardened</div>
+    <div class="t-line dim">* <span class="sha">3c21f90</span> monitor: Prometheus + Grafana + ELK stack deployed</div>
+    <div class="t-line"><span class="cmd">$ </span><span class="cursor"></span></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="section-header"><i class="ti ti-send"></i> contact</div>
+  <div class="contact-bar">
+    <a class="contact-link" href="mailto:umuneeb261@gmail.com"><i class="ti ti-mail"></i>umuneeb261@gmail.com</a>
+    <a class="contact-link" href="https://linkedin.com/in/fgfusion" target="_blank"><i class="ti ti-brand-linkedin"></i>linkedin.com/in/fgfusion</a>
+    <a class="contact-link" href="https://github.com/fgfusion" target="_blank"><i class="ti ti-brand-github"></i>github.com/fgfusion</a>
+    <a class="contact-link" href="tel:+923000437094"><i class="ti ti-phone"></i>+92-300-0437094</a>
+  </div>
+
+</div>
+</body>
+</html>
